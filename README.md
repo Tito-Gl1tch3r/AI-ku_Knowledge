@@ -1,25 +1,28 @@
 # AI-ku_Knowledge
 
-Dataset de conocimiento en formato **JSONL** (fine-tuning tipo SFT) en **español**, construido para el asistente **AI-ku**. Corte de conocimiento: **2026-10-04**. Compilado y verificado el 2026-10-05 con investigación web en vivo de todos los dominios.
+Dataset de conocimiento en formato **JSONL** (fine-tuning tipo SFT) en **español**, construido para el asistente **AI-ku**. Corte de conocimiento: **2026-10-04**. v1.0 compilado el 2026-10-05; **v2.0** amplía el dataset con cobertura general 2024→2026 (IA de frontera, hardware/infraestructura, agentes, ciencia y cultura) verificada con investigación web en vivo.
 
 ## Dominios y prioridad
 
-| Dominio | Filas | % filas | % esfuerzo declarado | Notas |
-|---|---|---|---|---|
-| `hatsune_miku` (ecosistema Vocaloid) | 124 | 51.0% | **40% — PRIORIDAD ABSOLUTA** | Historia, software/voicebanks, Crypton/Piapro/KARENT, conciertos, juegos, productores, canciones, memes, licencias, canon vs fanon, ecosistema (Rin/Len, Luka, MEIKO, KAITO, Teto, motores), tecnología |
-| `ia_2024_2026` | 61 | 25.1% | 30% | Cronología verificada en vivo: OpenAI, Anthropic, Google/DeepMind, DeepSeek, Kimi/Moonshot, Qwen/Alibaba, GLM/Zhipu, Meta, NVIDIA, Mistral, xAI, otros; agentes, coding, reasoning, multimodal |
-| `uma_musume` | 31 | 12.8% | 20% | Juego, personajes, caballos reales (separación estricta canon/histórico), anime, manga, película, memes (incl. Mambo), estado 2026 |
-| `ado` | 15 | 6.2% | 7% | Biografía, discografía, giras, colaboraciones, memes hispanos (Adominación, gyaru) |
-| `cruzado` | 12 | 4.9% | 3% | Multi-hop entre dominios, desambiguaciones, verificación temporal, auditoría anti-rumor |
+| Dominio | Filas (v1) | Filas añadidas v2.0 | Notas |
+|---|---|---|---|
+| `hatsune_miku` (ecosistema Vocaloid) | 124 | — (núcleo v1.0) | Historia, software/voicebanks, Crypton/Piapro/KARENT, conciertos, juegos, productores, canciones, memes, licencias, canon vs fanon |
+| `ia_2024_2026` | 61 | **+43** | v2.0: OpenAI (GPT-5/5.1/5.2/5.6/6 Astra, Sora 2, Atlas, AgentKit, Stargate, OPI), Anthropic (Opus 4.5, Skills, acuerdo 1.5B$, Fable/Mythos), Google (Gemini 3, Antigravity, Nano Banana, Ironwood, Waymo), China (DeepSeek V4, Qwen3.x, Kimi K3, GLM-5.x, MiniMax), Meta TBD Lab, Mistral, xAI/Grok 5 (no verificado) |
+| `ciencia_2024_2026` | 0 | **+24** | Nobel 2024/2025 (+calendario 2026), cuántica (Willow, Majorana 1, IBM Starling, NIST PQC, Quantum Echoes), fusión (NIF, EAST, ITER), cosmología (DESI, JWST, KM3NeT), espacio (Parker, Euclid, Rubin, 3I/ATLAS, Chang'e 6, Starship) |
+| `cultura_2024_2026` | 0 | en curso | Videojuegos, anime, música, cine/TV, internet (v2.1) |
+| `ia_2024_2026` hardware/agentes | (dentro del dominio IA) | **+28** | NVIDIA 5T$/Rubin, TPU v6/v7, NVFP4, vLLM/SGLang, llama.cpp/GGUF, superciclo HBM4/DRAM, MCP (adopción→AAIF), Claude Code/OpenCode/Cline/OpenClaw, Cursor/Windsurf/Devin, SWE-bench/METR/ARC-AGI-2/HLE, EU AI Act |
+| `uma_musume` | 31 | — (núcleo v1.0) | Juego, personajes, caballos reales, anime, manga, memes |
+| `ado` | 15 | — (núcleo v1.0) | Biografía, discografía, giras, memes |
+| `cruzado` | 12 | **+10** | v2.0: multi-hop IA↔ciencia↔cultura, hecho vs mito (IMO, 3I/ATLAS, Nobel), cadenas Stargate→memoria→precios |
 
-Los porcentajes de filas no son el objetivo; lo fue la distribución de **esfuerzo** (investigación + verificación + redacción). Miku recibió la mayor densidad de investigación (≈46 consultas web específicas) y sus filas son las más elaboradas.
+Corte total v2.0 preliminar: **~353 filas** (105 nuevas). El enfoque v2.0 sigue la premisa CALIDAD > PROFUNDIDAD > COBERTURA > CANTIDAD: cada fila nueva está respaldada por búsquedas específicas (ver `fuente`) y las afirmaciones no verificables se marcan `media`/`baja` o `rumor`.
 
 ## Esquema de cada fila
 
 ```json
 {
-  "id": "miku-0001",              // prefijo por dominio: miku-, ia-, uma-, ado-, cross-
-  "domain": "hatsune_miku",       // hatsune_miku | ia_2024_2026 | uma_musume | ado | cruzado
+  "id": "miku-0001",              // prefijo por dominio: miku-, ia-, iah-, iaa-, ia2-, uma-, ado-, cross-, cie-, cul-, crx-
+  "domain": "hatsune_miku",       // hatsune_miku | ia_2024_2026 | ciencia_2024_2026 | cultura_2024_2026 | uma_musume | ado | cruzado
   "subdomain": "historia",        // subárea temática
   "tags": ["lanzamiento", "2007"],// palabras clave
   "tipo": "factual",              // factual | multi_hop | temporal | comparativo |
@@ -53,10 +56,10 @@ Los porcentajes de filas no son el objetivo; lo fue la distribución de **esfuer
 
 ## Metodología
 
-1. **Investigación web en vivo (2026-10-05)**: ≈145 consultas de búsqueda distribuidas por dominio, con reintentos y verificación cruzada. Especialmente intensiva en: actualidad IA 2025-2026 (fuera del corte de entrenamiento de cualquier modelo), estado de los voicebanks de Miku (NT ver.2, V6), calendario de conciertos 2026 (Magical Mirai, Miku Expo Europa/NA), roster y hechos de Uma Musume (muertes de Haru Urara y Meisho Mambo, TGA 2025, versión global), y discografía/giras de Ado (Hibana, Vivarium).
-2. **Regla de no invención**: si un dato no salió de fuentes verificables o conocimiento estable, o no se incluye, o se etiqueta `rumor`/`media`/`baja` con la incertidumbre explícita en el texto. Hay filas deliberadas de **anti-alucinación** (afirmaciones falsas famosas corregidas).
+1. **Investigación web en vivo (2026-10-05)**: v1.0 ≈145 consultas; **v2.0 añade ≈90 consultas** (IA/hardware/agentes 2025-2026, ciencia 2024-2026, cultura 2024-2026), con reintentos ante rate-limiting y verificación cruzada. Prioridad a fuentes primarias: blogs oficiales (OpenAI, Anthropic, Google, NobelPrize.org, NASA, ITER), papers (Nature, arXiv) y prensa técnica para el resto.
+2. **Regla de no invención**: si un dato no salió de fuentes verificables o conocimiento estable, o no se incluye, o se etiqueta `rumor`/`media`/`baja` con la incertidumbre explícita en el texto. Ejemplos v2.0: Grok 5 (sin lanzamiento verificable al corte → `baja`), Teorías alienígena de 3I/ATLAS (`mixto`, desmentidas en el propio texto), Nobel 2026 (fila de conciencia temporal: "aún no anunciados").
 3. **Separación de capas**: historia real vs canon de obra vs fanon de comunidad, con etiquetas y ejemplos explícitos de confusión típica.
-4. **Tipos difíciles**: ~24% de las filas son multi_hop, temporales, comparativas, de desambiguación, memes con origen o de conciencia temporal — no solo facts planos.
+4. **Tipos difíciles**: ~26% de las filas son multi_hop, temporales, comparativas, de desambiguación, memes con origen o de conciencia temporal — no solo facts planos.
 
 ## Uso para fine-tuning
 
@@ -84,9 +87,12 @@ Sugerencias:
 
 ## Limitaciones conocidas (honestidad ante todo)
 
-- Las fechas de algunos conciertos de la gira **Miku Expo 2026 Europe** provienen de agregadores de ticketing y pueden moverse; confiança `media`.
+- Las fechas de algunos conciertos de la gira **Miku Expo 2026 Europe** provienen de agregadores de ticketing y pueden moverse; confianza `media`.
 - El listado exacto de G1 de Kitasan Black y algunos récords del turf se resumen; para apuestas/historia precisa, contrastar con netkeiba/JRA.
 - Rumores de OPI/valoraciones de empresas IA en 2026 (Anthropic, OpenAI) son reportes de prensa, no cifras auditadas.
+- **Grok 5**: no hay lanzamiento verificable al corte; la fila se limita a lo declarado públicamente (`baja`).
+- **Familia GPT-5.6/GPT-6**: la nomenclatura Sol/Terra/Luna/Astra proviene de prensa técnica de jul-sep 2026; los detalles internos (tamaños) no son públicos.
+- **Mythos 5.1 ≈ 8T parámetros** es estimación de prensa (FT), no cifras oficiales de Anthropic.
 - El estado de lanzamiento exacto de Miku V6 a octubre de 2026 se declara según anuncios de early access (dic 2025) + plan H1 2026; verificar el sitio de Crypton antes de afirmar disponibilidad.
 
 ## Licencia
@@ -96,4 +102,5 @@ Los **hechos** pertenecen a sus fuentes (Crypton, SEGA, Cygames, Universal Music
 ## Versionado
 
 - **v1.0 (2026-10-05)**: 243 filas. Lanzamiento inicial con corte 2026-10-04.
-- Roadmap sugerido: ampliar roster detallado de Uma Musume (una fila por uma con su caballo real), catálogo de canciones de Miku por era, y actualización mensual de la cronología IA.
+- **v2.0 (2026-10-05)**: +105 filas (IA de frontera 2024-2026, hardware/infra, agentes/MCP, ciencia, cruzado). Nuevos dominios: `ciencia_2024_2026`. Corte sin cambios: 2026-10-04.
+- Roadmap: dominio `cultura_2024_2026` completo (videojuegos/anime/música/cine), roster detallado de Uma Musume, catálogo de canciones de Miku por era, actualización mensual de la cronología IA.
