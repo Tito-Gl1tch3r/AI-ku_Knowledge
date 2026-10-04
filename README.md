@@ -15,7 +15,7 @@ Dataset de conocimiento en formato **JSONL** (fine-tuning tipo SFT) en **españo
 | `ado` | 15 | — (núcleo v1.0) | Biografía, discografía, giras, memes |
 | `cruzado` | 12 | **+10** | v2.0: multi-hop IA↔ciencia↔cultura, hecho vs mito (IMO, 3I/ATLAS, Nobel), cadenas Stargate→memoria→precios |
 
-Corte total v2.0 preliminar: **~353 filas** (105 nuevas). El enfoque v2.0 sigue la premisa CALIDAD > PROFUNDIDAD > COBERTURA > CANTIDAD: cada fila nueva está respaldada por búsquedas específicas (ver `fuente`) y las afirmaciones no verificables se marcan `media`/`baja` o `rumor`.
+Corte total v2.0: **366 filas** (123 nuevas). El enfoque v2.0 sigue la premisa CALIDAD > PROFUNDIDAD > COBERTURA > CANTIDAD: cada fila nueva está respaldada por búsquedas específicas (ver `fuente`) y las afirmaciones no verificables se marcan `media`/`baja` o `rumor`.
 
 ## Esquema de cada fila
 
@@ -77,12 +77,13 @@ Sugerencias:
 - Las filas `tipo=meme` y `canon_vs_fanon` están escritas con tono coloquial a propósito (petición explícita del proyecto): enseñan al modelo el registro del fandom.
 - Las filas `corte=2026-10-04` de tipo `conciencia_temporal` ayudan al modelo a responder "¿qué pasa hoy?" sin inventar actualidad posterior.
 
-## Estadísticas
+## Estadísticas (v2.0)
 
-- **243 filas**, ≈256 KB, 100% español.
-- Tipos: factual 51.9%, temporal 19.8%, multi_hop 7.8%, meme 5.8%, comparativo 5.8%, conciencia_temporal 3.7%, desambiguacion 2.9%, canon_vs_fanon 2.5%.
-- Canon: canon 87.7%, meme 5.8%, historico 3.3%, mixto 1.6%, fanon 0.8%, rumor 0.8%.
-- Confianza: alta 61.7%, media 37.9%, baja 0.4%.
+- **366 filas**, ≈393 KB, 100% español.
+- Por dominio: ia_2024_2026 36,1% (132), hatsune_miku 33,9% (124), uma_musume 8,5% (31), ciencia_2024_2026 6,6% (24), cruzado 6,0% (22), cultura_2024_2026 4,9% (18), ado 4,1% (15).
+- Tipos: factual 52,2%, temporal 20,5%, multi_hop 8,2%, comparativo 5,5%, meme 4,6%, conciencia_temporal 4,4%, canon_vs_fanon 2,7%, desambiguacion 1,9% → **~47% de filas no son facts planos**.
+- Canon: canon 85,5%, historico 6,3%, meme 4,4%, mixto 2,7%, fanon 0,5%, rumor 0,5%.
+- Confianza: alta 65,6%, media 33,9%, baja 0,5%.
 - Ver `dataset_stats.json` para el detalle completo.
 
 ## Limitaciones conocidas (honestidad ante todo)
@@ -102,5 +103,5 @@ Los **hechos** pertenecen a sus fuentes (Crypton, SEGA, Cygames, Universal Music
 ## Versionado
 
 - **v1.0 (2026-10-05)**: 243 filas. Lanzamiento inicial con corte 2026-10-04.
-- **v2.0 (2026-10-05)**: +105 filas (IA de frontera 2024-2026, hardware/infra, agentes/MCP, ciencia, cruzado). Nuevos dominios: `ciencia_2024_2026`. Corte sin cambios: 2026-10-04.
-- Roadmap: dominio `cultura_2024_2026` completo (videojuegos/anime/música/cine), roster detallado de Uma Musume, catálogo de canciones de Miku por era, actualización mensual de la cronología IA.
+- **v2.0 (2026-10-05)**: +123 filas (IA de frontera 2024-2026, hardware/infra, agentes/MCP, ciencia, cultura 2024, cruzado). Nuevos dominios: `ciencia_2024_2026`, `cultura_2024_2026`. Corte sin cambios: 2026-10-04.
+- Roadmap v2.1 (bloqueado por rate-limit del buscador en la sesión v2.0): cultura 2025-2026 completa (Switch 2 lanzamiento/ventas, GTA VI retrasos, TGA 2025, Infinity Castle, KPop Demon Hunters, Grammys 2026, Bad Bunny/Labubu/brainrot 2025), ciencia restante (Polaris Dawn, Starliner/Artemis II, 2024 YR4, K2-18b, GLP-1, CRISPR KJ, Neuralink, conectoma, mirror life, COP30, IMO/AlphaEvolve, Fields 2026), y verificación de huecos (US AI Action Plan, Intel stake, Grok 5).
