@@ -1,6 +1,6 @@
 # AI-ku_Knowledge
 
-Dataset de conocimiento en formato **JSONL** (fine-tuning tipo SFT) en **español**, construido para el asistente **AI-ku**. Corte de conocimiento: **2026-10-04**. v1.0 compilado el 2026-10-05; **v2.0** amplía con cobertura general 2024→2026 (IA de frontera, hardware/infraestructura, agentes, ciencia y cultura) verificada con investigación web en vivo; **v2.1** completa la cultura 2025-2026, la ciencia pendiente y añade **Gemini 4 Argon** (30-sep-2026, limited preview).
+Dataset de conocimiento en formato **JSONL** (fine-tuning tipo SFT) en **español**, construido para el asistente **AI-ku**. Corte de conocimiento: **2026-10-04**. v1.0 compilado el 2026-10-05; **v2.0** amplía con cobertura general 2024→2026 (IA de frontera, hardware/infraestructura, agentes, ciencia y cultura) verificada con investigación web en vivo; **v2.1** completa la cultura 2025-2026, la ciencia pendiente y añade **Gemini 4 Argon** (30-sep-2026, limited preview); **v2.2** cierra los huecos de inventario de IA moderna 2024→2026 (Sonnet 4.6/5/5.5, Grok 4.5/4.7 y SpaceXAI, GPT-4o mini, Pulse, reorganización PBC, rondas Anthropic/OpenAI, Apple Intelligence, Alexa+, AMD/Intel/Maia, agentes OpenHands/Bolt/Lovable/Kiro, robótica humanoide, regulación SB 1047/53 y Take It Down) + cultura/españa/Nobel 2025.
 
 ## Dominios y prioridad
 
@@ -15,7 +15,7 @@ Dataset de conocimiento en formato **JSONL** (fine-tuning tipo SFT) en **españo
 | `ado` | 15 | — (núcleo v1.0) | Biografía, discografía, giras, memes |
 | `cruzado` | 12 | **+10** | v2.0: multi-hop IA↔ciencia↔cultura, hecho vs mito (IMO, 3I/ATLAS, Nobel), cadenas Stargate→memoria→precios |
 
-Corte total v2.1: **416 filas** (+123 en v2.0, +50 en v2.1). El enfoque sigue la premisa CALIDAD > PROFUNDIDAD > COBERTURA > CANTIDAD: cada fila nueva está respaldada por fuentes específicas (ver `fuente`) y las afirmaciones no verificables se marcan `media`/`baja` o `rumor`.
+Corte total v2.2: **492 filas** (+123 en v2.0, +50 en v2.1, +76 en v2.2). El enfoque sigue la premisa CALIDAD > PROFUNDIDAD > COBERTURA > CANTIDAD: cada fila nueva está respaldada por fuentes específicas (ver `fuente`) y las afirmaciones no verificables se marcan `media`/`baja` o `rumor`.
 
 ## Esquema de cada fila
 
@@ -77,13 +77,13 @@ Sugerencias:
 - Las filas `tipo=meme` y `canon_vs_fanon` están escritas con tono coloquial a propósito (petición explícita del proyecto): enseñan al modelo el registro del fandom.
 - Las filas `corte=2026-10-04` de tipo `conciencia_temporal` ayudan al modelo a responder "¿qué pasa hoy?" sin inventar actualidad posterior.
 
-## Estadísticas (v2.1)
+## Estadísticas (v2.2)
 
-- **416 filas**, ≈454 KB, 100% español.
-- Por dominio: ia_2024_2026 33,7% (140), hatsune_miku 29,8% (124), cultura_2024_2026 10,3% (43), ciencia_2024_2026 9,9% (41), uma_musume 7,5% (31), cruzado 5,3% (22), ado 3,6% (15).
-- Tipos: factual 51,9%, temporal 21,6%, multi_hop 8,2%, comparativo 5,0%, meme 4,6%, conciencia_temporal 3,8%, canon_vs_fanon 3,1%, desambiguacion 1,7% → **~48% de filas no son facts planos**.
-- Canon: canon 85,3%, historico 6,2%, meme 4,3%, mixto 3,1%, fanon 0,5%, rumor 0,5%.
-- Confianza: alta 67,1%, media 32,5%, baja 0,5%.
+- **492 filas**, ≈548 KB, 100% español.
+- Por dominio: ia_2024_2026 41,7% (205), hatsune_miku 25,4% (125), cultura_2024_2026 10,4% (51), ciencia_2024_2026 8,5% (42), uma_musume 6,5% (32), cruzado 4,5% (22), ado 3,0% (15). Nota v2.2: la cuota de IA sube deliberadamente por petición expresa ("cuántas IAs han salido desde 2024"), con inventario cerrado por años en la fila `ia4-0065`.
+- Tipos: factual 54,7%, temporal 20,9%, multi_hop 7,1%, comparativo 4,7%, meme 4,1%, canon_vs_fanon 3,9%, conciencia_temporal 3,3%, desambiguacion 1,4% → **~46% de filas no son facts planos**.
+- Canon: canon 87,2%, historico 5,3%, meme 3,9%, mixto 2,8%, fanon 0,4%, rumor 0,4%.
+- Confianza: alta 69,5%, media 30,1%, baja 0,4%.
 - Ver `dataset_stats.json` para el detalle completo.
 
 ## Limitaciones conocidas (honestidad ante todo)
@@ -107,4 +107,5 @@ Los **hechos** pertenecen a sus fuentes (Crypton, SEGA, Cygames, Universal Music
 - **v1.0 (2026-10-05)**: 243 filas. Lanzamiento inicial con corte 2026-10-04.
 - **v2.0 (2026-10-05)**: +123 filas (IA de frontera 2024-2026, hardware/infra, agentes/MCP, ciencia, cultura 2024, cruzado). Nuevos dominios: `ciencia_2024_2026`, `cultura_2024_2026`. Corte sin cambios: 2026-10-04.
 - **v2.1 (2026-10-05)**: +50 filas. **Gemini 4 Argon** (3 filas: modelo, precios/rollout Fairwind→API/AI Ultra, benchmarks DeepSWE/AutomationBench/Vals), familia Gemini 3.8 (Flash/Live/TTS/Cyber + Nano Banana 2 = 3.1 Flash Image), Neuralink, AlphaEvolve e IMO 2024/2025; ciencia completa (Polaris Dawn, Starliner, New Glenn, Artemis II — lanzada 1-abr-2026—, 2024 YR4, K2-18b, anti-amiloide, CRISPR KJ, conectoma FlyWire, mirror life, lobos de Colossal, mpox, H5N1, Acuerdo de Pandemia, récord térmico 2024, COP30, Fields 2026); cultura 2025-2026 (Switch 2, TGA 2025, GTA VI, Palworld-patentes, BF6, MH Wilds, Steam Machine, Concord, Infinity Castle, KPDH, Showgirl, Bad Bunny AOTY, Óscar/Emmy/Super Bowl LX, Labubu, brainrot, 6-7, Mangione, Diddy). Metodología v2.1: ante rate-limit persistente del buscador, verificación vía **Wikipedia (rev. 2026-10) + blog oficial de Google**, con fechas de revisión citadas en `fuente`.
-- Roadmap v2.2: capex hiperescala 2026 desglosado, ingresos anualizados OpenAI/Anthropic con cifras auditables, acuerdo TikTok-EEUU ( Oracle/Silver Lake), comeback BTS 2026 y gira BLACKPINK (pendientes de verificación con cuota de búsqueda), GLP-1 orforglipron (detalles FDA), casos humanos H5N1 con fechas exactas.
+- **v2.2 (2026-10-05)**: +76 filas tras auditoría de cobertura (inventario de 260 entidades → 99 huecos detectados). IA: GPT-4o mini, Pulse, chats grupales, voz Scarlett/Sky, rondas y valoraciones OpenAI ($6.6B→$40B→$500B) y reorganización PBC (28-oct-2025), Serie F Anthropic $13B (2-sep-2025), Microsoft-Nvidia-Anthropic (18-nov-2025), contratos DoD $200M (15-jul-2025), Anthropic↔Colossus de SpaceXAI (6-may-2026), Thinking Machines/SSI/Inflection/Character.ai/Broadcom-OpenAI, escala ChatGPT (900M WAU feb-2026), AI Overviews, NotebookLM, Jules, Gemma 2/4, SAM 2/3, Movie Gen, V-JEPA 2, DeepSeek V3.1-Terminus y -OCR, Kimi Linear, Qwen3-Coder/Omni, **Sonnet 4.6/5/5.5 (17-feb/30-jun/28-sep-2026)**, Cowork, Economic Index, Claude Plays Pokémon, **Grok 4.5 (9-jul-2026) y 4.7 (21-sep-2026) + SpaceXAI/Cursor**, AutoGLM/GLM-4.6 (chips domésticos), Seedream 4.0, UI-TARS, iFlytek X1 (Huawei), Yi-Lightning, MiniCPM, MAI, BitNet b1.58, Windows Recall, Alexa+, **Apple Intelligence (28-oct-2024)**, WWDC25/Siri-Gemini, Vision Pro/MLX, Cohere Command A/A+, Arctic/Jamba; hardware/agentes/regulación: AMD Instinct (MI300X→Helios), Gaudi 3/Falcon Shores, Maia 100, DLSS 4, Etched/Lightmatter/Tenstorrent, nuclear-TMI/Oklo, OpenHands, Replit Agent/Bolt.new, Lovable, Kiro/Firebase Studio→Antigravity, MLE-bench/Terminal-Bench, MLA/KV cache/especulativa, world models (Genie 3/Cosmos/V-JEPA 2), SB 1047/53, AI Diffusion Rule, Take It Down Act, humanoides (Unitree/Figure/GR00T/Optimus/1X). Cultura/ciencia: Eras Tour ($2.2B/149 shows), Sabrina Carpenter, Zootopia 2 (~$2.27B), Avatar: Fire and Ash (19-dic-2025), **DANA de Valencia (29-oct-2024)**, **apagón ibérico (28-abr-2025)**, Eurocopa 2024, **Nobel 2025 completos**, Stranger Things 5, aniversarios 18/19 de Miku, 1.º aniversario global de Umamusume. Metodología v2.2: `coverage_check.py` (matriz de entidades vs dataset) + Wikipedia action=raw (65 páginas nuevas, redirects resueltos) ante búsqueda 429.
+- Roadmap v2.3: capex hiperescala 2026 desglosado, ingresos anualizados auditables, acuerdo TikTok-EE. UU. (Oracle/Silver Lake), comeback BTS 2026 y gira BLACKPINK, GLP-1 orforglipron (FDA), casos humanos H5N1 con fechas exactas, verificación primaria de la fusión SpaceXAI-Cursor y del final de Miku V6.
