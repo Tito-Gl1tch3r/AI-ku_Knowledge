@@ -1,22 +1,22 @@
 {
   "dataset": "AI-ku_Knowledge",
-  "version": "2.5",
+  "version": "2.6",
   "fecha_compilacion": "2026-10-05",
   "corte_conocimiento": "2026-10-04",
   "idioma": "es",
-  "total_filas": 560,
+  "total_filas": 566,
   "por_dominio": {
     "ado": 15,
-    "ia_2024_2026": 238,
+    "ia_2024_2026": 240,
     "ciencia_2024_2026": 53,
     "cruzado": 22,
-    "cultura_2024_2026": 75,
+    "cultura_2024_2026": 79,
     "hatsune_miku": 125,
     "uma_musume": 32
   },
   "por_tipo": {
-    "factual": 313,
-    "temporal": 117,
+    "factual": 318,
+    "temporal": 118,
     "multi_hop": 38,
     "meme": 20,
     "comparativo": 29,
@@ -25,7 +25,7 @@
     "desambiguacion": 7
   },
   "por_canon_o_fanon": {
-    "canon": 494,
+    "canon": 500,
     "rumor": 2,
     "meme": 19,
     "historico": 28,
@@ -33,19 +33,19 @@
     "fanon": 2
   },
   "por_confianza": {
-    "media": 162,
-    "alta": 396,
+    "media": 163,
+    "alta": 401,
     "baja": 2
   },
   "por_subdominio": {
     "openai": 95,
     "google_deepmind": 37,
-    "otros": 25,
+    "otros": 26,
     "videojuegos": 19,
     "conciertos": 19,
+    "anthropic": 18,
     "memes": 17,
     "agentes_software": 17,
-    "anthropic": 17,
     "multi_hop": 16,
     "musica": 15,
     "software_voicebanks": 14,
@@ -76,6 +76,7 @@
     "discografia": 4,
     "anime_manga": 4,
     "internet_memes": 4,
+    "mods": 4,
     "personajes": 4,
     "biografia": 3,
     "desambiguacion": 3,
@@ -108,11 +109,11 @@
     "2026": 27,
     "2024": 23,
     "cronología": 15,
+    "meme": 9,
     "agentes": 9,
-    "meme": 8,
+    "video generativo": 8,
     "Anthropic": 7,
     "OpenAI": 7,
-    "video generativo": 7,
     "lanzamiento": 6,
     "deepmind": 6,
     "Microsoft": 5,
@@ -126,13 +127,13 @@
     "Ado": 4,
     "syudou": 4,
     "estado 2026": 4,
+    "open source": 4,
     "Cursor": 4,
     "GPT-5.2": 4,
     "Willow": 4,
     "controversia": 4,
     "comparación": 4,
     "Not Like Us": 4,
-    "Nintendo": 4,
-    "TikTok": 4
+    "Nintendo": 4
   }
 }
